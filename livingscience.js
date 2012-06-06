@@ -37,7 +37,7 @@ function lsSearch(idSuffix) {
 		var dataArray = eval(data);
 		// Check if this autocompletion type is the same or not
 		// If not the same, we do not load any preselected results
-		query[idSuffix] = dataArray.join(",");
+		query[idSuffix] = dataArray.join(", ");
 		console.log("query: " + query[idSuffix]);
 		if(lsObject[idSuffix] == null)
 		{
@@ -48,6 +48,8 @@ function lsSearch(idSuffix) {
 		if (!lsObject[idSuffix]) return;
 		document.getElementById("watchProgress-"+idSuffix+"-1").innerHTML = "Please wait...";
 		document.getElementById("searchResults-"+idSuffix+"-1").innerHTML = "";
+		document.getElementById("ls-pagination-"+idSuffix+"-1").innerHTML = "";	
+		
 		lsObject[idSuffix].searchAuthor(query[idSuffix], function(publications) 
 		{
 			var numberOfResults = lsObject[idSuffix].getTotalResults();

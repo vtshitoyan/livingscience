@@ -122,14 +122,20 @@ function livingscience_get_author_names($uids = '') {
 			$lastnamefield = variable_get('livingscience_last_name','');
 			$firstnameArray = $author->$firstnamefield;
 			$lastnameArray = $author->$lastnamefield;
-			$authorNamesArray[] = $firstnameArray[LANGUAGE_NONE][0]['value']." ".$lastnameArray[LANGUAGE_NONE][0]['value'];
+			$fullName = trim($firstnameArray[LANGUAGE_NONE][0]['value']." ".$lastnameArray[LANGUAGE_NONE][0]['value']);
+			if ($fullName != "") {
+				$authorNamesArray[] = $fullName;
+			}
 		}
 	} else {
 		// Full name field set
 		foreach ($authors as $author) {
 			$fullnamefield = variable_get('livingscience_full_name','');
 			$fullNameArray = $author->$fullnamefield;
-			$authorNamesArray[] = $fullNameArray[LANGUAGE_NONE][0]['value'];
+			$fullName = trim($fullNameArray[LANGUAGE_NONE][0]['value']);
+			if ($fullName != "") {
+				$authorNamesArray[] = $fullName;
+			}
 		}	
 	}
 //	$authorNames = substr_replace($authorNames, "", -1);		
